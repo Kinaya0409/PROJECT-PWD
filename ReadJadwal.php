@@ -5,7 +5,7 @@
 </head>
 <body>
 <h2>CRUD Jadwal Belajar</h2>
-<p><a href="Read.php">Beranda</a> / <a href="Create.php">Tambah Jadwal</a></p>
+<p><a href="ReadJadwal.php">Beranda</a> / <a href="CreateJadwal.php">Tambah Jadwal</a></p>
 
 <h3>Data Jadwal</h3>
 
@@ -15,11 +15,10 @@
         <th>Mata Kuliah</th>
         <th>Hari</th>
         <th>Sesi</th>
-        <th>Opsi</th>
     </tr>
 
     <?php
-    include("../koneksi.php");
+    include("koneksi.php");
 
     $query = mysqli_query($koneksi, "SELECT * FROM jadwal ORDER BY id_jadwal DESC") or die(mysqli_error($koneksi));
 
