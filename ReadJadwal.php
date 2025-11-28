@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>CRUD Jadwal Belajar</title>
+    <link rel="stylesheet" type="text/css" href="css/noteTugas.css" />
 </head>
 <body>
 <h2>CRUD Jadwal Belajar</h2>
