@@ -1,15 +1,20 @@
 <?php
 include("koneksi.php");
 
-// sementara id_user dipaksa 1 dulu
+// sementara id_user = 1
 $id_user = 1;
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Tugas Mingguan</title>
-    <link rel="stylesheet" type="text/css" href="css/noteTugas.css" />
+
+    <link rel="stylesheet" href="css/noteTugas.css">
+    <script type="text/javascript" src="js/tugas.js" defer></script>
+
+
 </head>
 
 <body>
@@ -17,7 +22,7 @@ $id_user = 1;
     <h1>Tugas Mingguan</h1>
     <p>Daftar tugas mingguan</p>
 
-    <a href="CreateTugas.php" class="btn">➕ Tambah Tugas</a><br/><br/>
+    <a href="CreateTugas.php" class="btn">➕ Tambah Tugas</a><br><br>
 
     <div class="table-wrap">
         <table class="tasks">
@@ -32,41 +37,30 @@ $id_user = 1;
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody id="taskTable">
                 <?php
                 $no = 1;
-                $query = mysqli_query($koneksi, 
-                    "SELECT * FROM tugas WHERE id_user='$id_user' ORDER BY id_tugas DESC"
-                ) or die(mysqli_error($koneksi));
+                $query = mysqli_query($koneksi,
+                    "SELECT * FROM tugas WHERE id_user='$id_user' ORDER BY id_tugas DESC");
 
                 if(mysqli_num_rows($query) == 0){
                     echo '<tr><td colspan="6">Belum ada tugas!</td></tr>';
                 } else {
                     while($data = mysqli_fetch_assoc($query)){
                         $deadline = date("d-m-Y", strtotime($data['deadline']));
-                ?>
-                <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $data['matakuliah2']; ?></td>
-                    <td><?= $data['deskripsi_tugas']; ?></td>
-                    <td><?= $deadline; ?></td>
-
-                    <td data-status="<?= $data['status']; ?>">
-                        <?= $data['status']; ?>
-                    </td>
-
-                    <td class="actions">
-                        <a class="btn btn-small edit" 
-                           href="EditTugas.php?id_tugas=<?= $data['id_tugas']; ?>">Edit</a>
-
-                        <a class="btn btn-small btn-danger delete"
-                           href="DeleteTugas.php?id_tugas=<?= $data['id_tugas']; ?>"
-                           onclick="return confirm('Yakin ingin menghapus tugas ini?');">
-                           Hapus
-                        </a>
-                    </td>
-                </tr>
-                <?php 
+                        echo "
+                        <tr data-id='{$data['id_tugas']}'>
+                            <td>{$no}</td>
+                            <td>{$data['matakuliah2']}</td>
+                            <td>{$data['deskripsi_tugas']}</td>
+                            <td>{$deadline}</td>
+                            <td data-status='{$data['status']}'>{$data['status']}</td>
+                            <td class='actions'>
+                                <button class='btn btn-small edit'>Edit</button>
+                                <button class='btn btn-small btn-danger delete'>Hapus</button>
+                            </td>
+                        </tr>";
+                        $no++;
                     }
                 }
                 ?>
