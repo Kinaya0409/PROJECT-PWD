@@ -7,7 +7,7 @@ $id_user = 1;
 <html>
 <head>
     <title>Tambah Jadwal</title>
-    <link rel="stylesheet" type="text/css" href="css/jadwal.css">
+    <link rel="stylesheet" type="text/css" href="css/noteTugas.css">
 </head>
 <body>
 
