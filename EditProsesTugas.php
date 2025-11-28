@@ -3,7 +3,7 @@
 if (isset($_POST['simpan'])) {
 
     // Koneksi DB
-    include('../koneksi.php');
+    include('koneksi.php');
 
     // Ambil data dari form edit
     $id_tugas = $_POST['id_tugas'];
