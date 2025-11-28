@@ -7,7 +7,7 @@ $id_user = 1;
 <html>
 <head>
     <title>Tambah Jadwal</title>
-    <link rel="stylesheet" type="text/css" href="css/noteTugas.css">
+    <link rel="stylesheet" type="text/css" href="css/noteTugas.css" />
 </head>
 <body>
 
@@ -43,6 +43,8 @@ $id_user = 1;
                 <option value="1">Sesi 1</option>
                 <option value="2">Sesi 2</option>
                 <option value="3">Sesi 3</option>
+                <option value="4">Sesi 4</option>
+                <option value="5">Sesi 5</option>
             </select>
         </div>
 
