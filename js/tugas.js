@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     table.addEventListener("click", function(e) {
         if (e.target.classList.contains("edit")) {
             let id = e.target.closest("tr").dataset.id;
-            window.location = "EditTugas.php?id_tugas=" + id;
+            window.location = "UpdateTugas.php?id_tugas=" + id;
         }
     });
 
