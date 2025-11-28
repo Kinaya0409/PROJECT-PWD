@@ -1,46 +1,77 @@
+<?php
+include("koneksi.php");
+
+// sementara id_user = 1
+$id_user = 1;
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>CRUD Jadwal Belajar</title>
-    <link rel="stylesheet" type="text/css" href="css/noteTugas.css" />
+    <meta charset="UTF-8">
+    <title>Jadwal Belajar</title>
+
+    <link rel="stylesheet" href="css/noteTugas.css">
 </head>
+
 <body>
-<h2>CRUD Jadwal Belajar</h2>
-<p><a href="ReadJadwal.php">Beranda</a> / <a href="CreateJadwal.php">Tambah Jadwal</a></p>
+<div class="container">
 
-<h3>Data Jadwal</h3>
+    <h1>Jadwal Belajar</h1>
+    <p>Daftar jadwal mingguan</p>
 
-<table cellpadding="5" cellspacing="0" border="1">
-    <tr bgcolor="#CCCCCC">
-        <th>No.</th>
-        <th>Mata Kuliah</th>
-        <th>Hari</th>
-        <th>Sesi</th>
-    </tr>
+    <a href="CreateJadwal.php" class="btn">➕ Tambah Jadwal</a><br><br>
 
-    <?php
-    include("koneksi.php");
+    <div class="table-wrap">
+        <table class="tasks">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Mata Kuliah</th>
+                    <th>Hari</th>
+                    <th>Sesi</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
 
-    $query = mysqli_query($koneksi, "SELECT * FROM jadwal ORDER BY id_jadwal DESC") or die(mysqli_error($koneksi));
+            <tbody>
+                <?php
+                $no = 1;
+                $query = mysqli_query($koneksi,
+                    "SELECT * FROM jadwal WHERE id_user='$id_user' ORDER BY id_jadwal DESC");
 
-    if(mysqli_num_rows($query) == 0){
-        echo '<tr><td colspan="5">Tidak ada data!</td></tr>';
-    } else {
-        $no = 1;
-        while($data = mysqli_fetch_assoc($query)){
-            echo '<tr>';
-            echo '<td>'.$no.'</td>';
-            echo '<td>'.$data['matakuliah'].'</td>';
-            echo '<td>'.$data['hari'].'</td>';
-            echo '<td>Sesi '.$data['sesi'].'</td>';
-            echo '<td><a href="Edit.php?id='.$data['id_jadwal'].'">Edit</a> / 
-                       <a href="Delete.php?id='.$data['id_jadwal'].'" onclick="return confirm(\'Yakin?\')">Hapus</a></td>';
-            echo '</tr>';
-            $no++;
-        }
-    }
-    ?>
-</table>
+                if(mysqli_num_rows($query) == 0){
+                    echo '<tr><td colspan="6">Belum ada jadwal!</td></tr>';
+                } else {
+                    while($data = mysqli_fetch_assoc($query)){
+                        echo "
+                        <tr>
+                            <td>{$no}</td>
+                            <td>{$data['matakuliah']}</td>
+                            <td>{$data['hari']}</td>
+                            <td>Sesi {$data['sesi']}</td>
+                            <td class='actions'>
+                                <a href='UpdateJadwal.php?id={$data['id_jadwal']}' class='btn btn-small'>Edit</a>
+                                <a href='DeleteJadwal.php?id={$data['id_jadwal']}' 
+                                   class='btn btn-small btn-danger'
+                                   onclick='return confirm(\"Yakin hapus data?\")'>
+                                   Hapus
+                                </a>
+                            </td>
+                        </tr>";
+                        $no++;
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="nav-buttons">
+        <a class="link-back btn" href="profil.html">Kembali ke Profil</a>
+        <a class="link-back btn" href="ReadTugas.php">Ke Tugas</a>
+    </div>
+</div>
 
 </body>
 </html>
