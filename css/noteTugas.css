@@ -5,126 +5,95 @@ body {
     padding: 20px;
 }
 
+/* Container card tengah — ukuran pas untuk laptop */
 .container {
-    max-width: 900px;
-    margin: 20px auto;
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 50px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
 }
 
 h1 {
     margin-top: 0;
 }
 
-table.tasks {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+/* Grid Form — 3 Kolom */
+#task-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
 }
 
-table.tasks th,
-table.tasks td {
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.form-row input,
+.form-row select {
+    padding: 10px;
     border: 1px solid #cbd5e1;
-    padding: 10px 12px;
-    text-align: left;
+    border-radius: 6px;
 }
 
-table.tasks th {
-    background: #f1f5f9;
+/* Status memenuhi 3 kolom */
+.status-row {
+    grid-column: span 3;
 }
 
-table.tasks tbody tr:nth-child(even) {
-    background: #fbfdff;
+/* Tombol di kanan */
+.form-actions {
+    grid-column: span 3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
 
-.table-wrap {
-    overflow-x: auto;
-}
-
-table.tasks thead th {
-    position: sticky;
-    top: 0;
-    background: #f1f5f9;
-    z-index: 1;
-}
-
-table.tasks td[data-status] {
-    text-align: center;
-    white-space: nowrap;
-    font-weight: 600;
-}
-
-table.tasks td[data-status="Belum"] {
-    background: #fff7ed;
-    color: #b45309;
-    border-radius: 12px;
-    padding: 8px 10px;
-}
-
-table.tasks td[data-status="Selesai"] {
-    background: #ecfdf5;
-    color: #065f46;
-    border-radius: 12px;
-    padding: 8px 10px;
-}
-
-@media (max-width:600px) {
-    table.tasks th, table.tasks td { padding: 8px 6px; font-size: 0.95rem; }
-}
-
-.status-pending {
-    color: #b45309;
-    font-weight: 600;
-}
-
-.status-done {
-    color: #065f46;
-    font-weight: 600;
-}
-
-.link-back {
-    display: inline-block;
-    margin-top: 12px;
-    color: #1e40af;
-    text-decoration: none;
-}
-
-.link-back:hover { text-decoration: underline; }
-
-/* Form layout and controls */
-#task-form { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:14px; align-items:flex-end; }
-.form-row { flex: 1 1 220px; display:flex; flex-direction:column; }
-.form-row label { font-size:0.9rem; margin-bottom:6px; }
-.form-row input, .form-row select { padding:8px; border:1px solid #cbd5e1; border-radius:6px; }
-.form-actions { display:flex; gap:8px; align-items:center; }
-
-/* Button variants */
-.btn-small { padding:6px 8px; font-size:0.85rem; border-radius:6px; }
-.btn-ghost { background:transparent; color:#1e40af; border:1px solid #cbd5e1; }
-.btn-danger { background:#dc2626; color:#fff; }
-.btn-danger:hover { background:#b91c1c; }
-
-.actions { text-align:center; }
-.actions .btn { margin:0 4px; }
-
-@media (max-width: 600px) {
-    #task-form { flex-direction:column; }
-    .form-row { width:100%; }
-}
-
-.toggle-delete { display:inline-flex; align-items:center; gap:8px; font-size:0.95rem; color:#334155; }
-.toggle-delete input { width:16px; height:16px; }
-
+/* Tombol asli (warna TETAP sesuai awal) */
 .btn {
     display: inline-block;
     background: #b3b8cc;
     color: #000000;
-    padding: 8px 14px;
+    padding: 8px 16px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
+    border: none;
+    cursor: pointer;
 }
 
-.btn:hover { background: #153d86; }
+.btn:hover {
+    background: #153d86;
+    color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    #task-form {
+        grid-template-columns: 1fr 1fr;
+    }
+    .status-row,
+    .form-actions {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 600px) {
+    #task-form {
+        grid-template-columns: 1fr;
+    }
+    .status-row,
+    .form-actions {
+        grid-column: span 1;
+    }
+}
