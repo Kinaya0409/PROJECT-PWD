@@ -97,3 +97,83 @@ h1 {
         grid-column: span 1;
     }
 }
+
+/* Container khusus jadwal */
+.schedule-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+/* Deskripsi */
+.schedule-desc {
+    margin-top: 6px;
+    margin-bottom: 22px;
+    font-size: 1rem;
+    color: #1e293b;
+}
+
+/* Tombol tambah */
+.btn-add {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #b3b8cc;
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 22px;
+}
+
+/* Tabel jadwal */
+.table-schedule {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+}
+
+.table-schedule th,
+.table-schedule td {
+    border: 1px solid #cbd5e1;
+    padding: 12px;
+    text-align: center;
+}
+
+.table-schedule th {
+    background: #f1f5f9;
+    font-weight: 700;
+}
+
+.table-schedule tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+/* Button Edit & Hapus */
+.btn-action {
+    padding: 6px 14px;
+    background: #b3b8cc;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    margin: 0 3px;
+}
+
+.btn-action:hover {
+    background: #153d86;
+    color: #fff;
+}
+
+/* Tombol navigasi bawah */
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+}
+
