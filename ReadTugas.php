@@ -5,44 +5,42 @@
 </head>
 <body>
 <h2>CRUD Jadwal Belajar</h2>
-<p><a href="Read.php">Beranda</a> / <a href="Create.php">Tambah Jadwal</a></p>
+<p><a href="ReadTugas.php">Beranda</a> / <a href="Create.php">Tambah Jadwal</a></p>
 
 <h3>Data Jadwal</h3>
 
 <table cellpadding="5" cellspacing="0" border="1">
-    <tr bgcolor="#CCCCCC">
-        <th>No.</th>
-        <th>Mata Kuliah</th>
-        <th>Hari</th>
-        <th>Jam</th>
-        <th>Opsi</th>
-    </tr>
+<tr bgcolor="#CCCCCC">
+    <th>No.</th>
+    <th>Mata Kuliah</th>
+    <th>Hari</th>
+    <th>Jam</th>
+    <th>Opsi</th>
+</tr>
 
-    <?php
-    // include file koneksi ke database
-    include("../koneksi.php");
+<?php
+include("koneksi.php");
 
-    // ambil data jadwal dari database
-    $query = mysqli_query($koneksi, "SELECT * FROM jadwal ORDER BY id DESC") or die(mysqli_error($koneksi));
+$query = mysqli_query($koneksi, "SELECT * FROM jadwal ORDER BY id_jadwal DESC")
+         or die(mysqli_error($koneksi));
 
-    // cek apakah data ada di database
-    if(mysqli_num_rows($query) == 0){
-        echo '<tr><td colspan="5">Tidak ada data!</td></tr>';
-    } else {
-        $no = 1;
-        while($data = mysqli_fetch_assoc($query)){
-            echo '<tr>';
-            echo '<td>'.$no.'</td>';
-            echo '<td>'.$data['matkul'].'</td>';
-            echo '<td>'.$data['hari'].'</td>';
-            echo '<td>'.$data['jam_mulai'].' - '.$data['jam_selesai'].'</td>';
-            echo '<td><a href="Edit.php?id='.$data['id'].'">Edit</a> / 
-                       <a href="Delete.php?id='.$data['id'].'" onclick="return confirm(\'Yakin?\')">Hapus</a></td>';
-            echo '</tr>';
-            $no++;
-        }
+if(mysqli_num_rows($query) == 0){
+    echo '<tr><td colspan="5">Tidak ada data!</td></tr>';
+}else{
+    $no = 1;
+    while($data = mysqli_fetch_assoc($query)){
+        echo '<tr>';
+        echo '<td>'.$no.'</td>';
+        echo '<td>'.$data['matkul'].'</td>';
+        echo '<td>'.$data['hari'].'</td>';
+        echo '<td>'.$data['jam_mulai'].' - '.$data['jam_selesai'].'</td>';
+        echo '<td><a href="Edit.php?id='.$data['id'].'">Edit</a> | 
+                  <a href="Delete.php?id='.$data['id'].'" onclick="return confirm(\'Yakin?\')">Hapus</a></td>';
+        echo '</tr>';
+        $no++;
     }
-    ?>
+}
+?>
 
 </table>
 
